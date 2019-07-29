@@ -1,0 +1,14 @@
+<p>レーベル名</p>
+<%= form_for [:admins, @name] do |f| %>
+<%= f.text_field :name %>
+<%= f.submit "登録" %>
+<% end %>
+
+<h2>レーベル一覧</h2>
+<% @label.each do |label| %>
+
+<%= label.name %>
+
+<%= link_to "編集", edit_admins_label_path(label) %>
+
+<% end %>

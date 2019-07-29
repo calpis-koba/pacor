@@ -1,0 +1,31 @@
+<table>
+<tr>
+    <th></th>
+    <th></th>
+</tr>
+
+<tr>
+    <td> <p> 名前(姓・名) </p> </td>
+    <td> <%= user.last_name %> <%= user.first_name %> </td>
+</tr>
+
+<tr>
+    <td> <p> 名前(セイ・メイ) </p> </td>
+    <td> <%= user.kana_last_name %> <%= user.kana_first_name %> </td>
+</tr>
+
+<tr>
+    <td> <p> 郵便番号・住所 </p> </td>
+    <td> <%= user.postal_code %> <%= user.address %> </td>
+</tr>
+
+<tr>
+    <td> <p> 電話番号 </p> </td>
+    <td> <%= user.phone %> </td>
+</tr>
+
+<tr>
+    <td> <p> メールアドレス </p> </td>
+    <td> <%= user.email %> </td>
+</tr>
+</table>

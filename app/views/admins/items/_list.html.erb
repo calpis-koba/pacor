@@ -1,0 +1,39 @@
+<table>
+<thead>
+<tr>
+    <th><p>ジャケット</p></th>
+    <th><p>タイトル</p></th>
+    <th><p>アーティスト</p></th>
+    <th><p>在庫</p></th>
+    <th></th>
+</tr>
+</thead>
+
+<tbody>
+    <% cd.each do |cd| %>
+<tr>
+
+<td>
+    <%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+</td>
+
+<td>
+    <%= cd.title %>
+</td>
+
+<td>
+    <%= cd.artist.name %>
+</td>
+
+<td>
+    <%= cd.stock %>
+</td>
+
+<td>
+    <%= button_to 'カートに入れる', users_cart_items_path %>
+</td>
+
+</tr>				
+    <% end %>
+</tbody>
+</table>

@@ -1,0 +1,59 @@
+    <h1> ユーザ編集 </h1>
+
+<table>
+<%= form_for [:users, @user] do |f| %>
+
+<tr>
+    <th></th>
+    <th></th>
+</tr>
+
+<tr>
+    <td> <p> 名前(姓・名) </p> </td>
+</tr>
+<tr>
+    <td> <%= f.text_field :last_name %></td>
+    <td><%= f.text_field :first_name %> </td>
+</tr>
+
+<tr>
+    <td> <p> 名前(セイ・メイ) </p> </td>
+<tr>
+<tr>
+    <td> <%= f.text_field :kana_last_name %> </td>
+    <td> <%= f.text_field :kana_first_name %> </td>
+</tr>
+
+<tr>
+    <td> <p> 郵便番号 </p> </td>
+</tr>
+<tr>
+    <td> <%= f.text_field :postal_code %></td>
+</tr>
+
+<tr>
+    <td> <p> 住所 </p> </td>
+</tr>
+<tr>
+    <td> <%= f.text_field :address %> </td> 
+</tr>
+
+<tr>
+    <td> <p> 電話番号 </p> </td>
+</tr>
+<tr>
+    <td> <%= f.text_field :phone %> </td>
+</tr>
+
+<tr>
+    <td> <p> メールアドレス </p> </td>
+</tr>
+<tr>
+    <td> <%= f.text_field :email %> </td>
+</tr>
+
+<tr> <td> <%= f.submit "登録" %> </td> </tr>
+
+<% end %>
+
+</table>

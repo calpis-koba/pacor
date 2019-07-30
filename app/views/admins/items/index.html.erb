@@ -1,39 +1,40 @@
-<table>
- <%= link_to "新規登録", new_admins_item_path %>
-<thead>
-<tr>
-    <th><p>ジャケット</p></th>
-    <th><p>タイトル</p></th>
-    <th><p>アーティスト</p></th>
-    <th><p>在庫</p></th>
-    <th></th>
-</tr>
-</thead>
+<table class="table">
+  <%= link_to "新規登録", new_admins_item_path %>
+  <thead>
+    <tr>
+      <th>ジャケット</th>
+      <th>タイトル</th>
+      <th>アーティスト</th>
+      <th>在庫</th>
+      <th></th>
+    </tr>
+  </thead>
 
-<tbody>
-    <% @cd.each do |cd| %>
-<tr>
+  <tbody>
+    <% @item.each do |item| %>
 
-<td>
-    <%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-</td>
+      <tr>
+        <td>
+          <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        </td>
 
-<td>
-    <%= link_to cd.title, admins_item_path(cd) %>
-</td>
+        <td>
+          <%= link_to item.title, admins_item_path(item) %>
+        </td>
 
-<td>
-    <%= cd.artist.name %>
-</td>
+        <td>
+          <%= item.artist.name %>
+        </td>
 
-<td>
-    <%= cd.stock %>
-</td>
+        <td>
+          <%= item.stock %>
+        </td>
 
-<td>
-    <%= link_to "編集", edit_admins_item_path(cd) %>
-</td>
-</tr>				
+        <td>
+          <%= link_to "編集", edit_admins_item_path(item) %>
+        </td>
+      </tr>
+
     <% end %>
-</tbody>
+  </tbody>
 </table>

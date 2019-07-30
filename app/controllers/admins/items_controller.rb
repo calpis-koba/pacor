@@ -9,13 +9,20 @@ class Admins::ItemsController < ApplicationController
     
     def edit
         @cd = Item.find(params[:id])
+        @cd.disks.build
         @artist = Artist.all
         @label = Label.all
         @jenre = Jenre.all
     end
     
+    def show
+        @cd = Item.find(params[:id])
+        @songs = @cd.disks.songs
+    end
+    
     def new
         @cd = Item.new
+        @cd.disks.build
         @artist = Artist.all
         @label = Label.all
         @jenre = Jenre.all
@@ -23,14 +30,8 @@ class Admins::ItemsController < ApplicationController
     
     def create
         cd = Item.new(item_params)
-        @song = Song.new(song_params)
-        if cd.save
-            @song.save
-            redirect_to admins_items_path
-        else
-            redirect_to new_admins_item_path
-        
-        end
+        cd.save
+        redirect_to admins_items_path
     end
     
     def update
@@ -41,7 +42,7 @@ class Admins::ItemsController < ApplicationController
     
     private
     def item_params
-        params.require(:item).permit(:artist_id, :label_id, :jenre_id, :title, :price, :status, :jacket_image, :stock, disks_attributes:[:id, songs_attributes:[:id, :title]])
+        params.require(:item).permit(:artist_id, :label_id, :jenre_id, :title, :price, :status, :jacket_image, :stock, disks_attributes:[:id, :_destroy, songs_attributes:[:id, :title]])
     end
   
 end

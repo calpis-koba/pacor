@@ -1,2 +1,11 @@
-<div class="song_name"><%= f.fields_for :songs %></div>
-<div class="song_name"><%= f.link_to_add 'song_add', :songs %></div>
+<p>ディスク</p>
+
+<div class="songs">
+    <%= f.fields_for :songs do |song| %>
+      <%= f.label "曲" %>
+      <%= render "song_fields", f: song %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "曲を追加", f, :songs %>
+    </div>
+  </div>

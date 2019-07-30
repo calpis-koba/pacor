@@ -1,12 +1,6 @@
-<div class="nested-fields">
-  <div class="field">
-    <%= f.label :曲 %>
-    <br/>
+<p>曲名</p>
+
+  <div class="nested-fields">
     <%= f.text_field :title %>
+    <%= link_to_remove_association "remove task", f %>
   </div>
-  <div class="field">
-    <%= f.check_box :done %>
-    <%= f.label :done %>
-  </div>
-  <%= link_to_remove_association "remove task", f %>
-</div>

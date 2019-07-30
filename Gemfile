@@ -58,6 +58,11 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+group :production do
+  gem "mysql2"
+  gem "passenger"
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -69,8 +74,8 @@ gem "cocoon"
 gem "bootstrap-sass"
 gem "jquery-rails"
 gem "font-awesome-rails"
-gem "mysql2"
-gem "passenger"
+# gem "mysql2" # 本番環境でしか使わないためgroup :productionに移動
+# gem "passenger" # 本番環境でしか使わないためgroup :productionに移動
 gem "json"
 gem "better_errors"
 gem "binding_of_caller"

@@ -1,6 +1,6 @@
 
 <h2>商品登録</h2>
-<%= form_for [:admins, @cd] do |f| %>
+<%= form_for [:admins, @item] do |f| %>
 
 <p>アーティスト名</p>
 <%= f.select :artist_id, artist.collect {|p| [p.name, p.id]}, :prompt => "選択してください" %>

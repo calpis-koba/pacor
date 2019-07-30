@@ -1,19 +1,21 @@
 
 <h2>商品詳細</h2>
 <table>
-    <%= @cd.label.name %>
-    <%= @cd.jenre.name %>
+    <%= @item.label.name %>
+    <%= @item.jenre.name %>
 
-    <%= attachment_image_tag @cd, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+    <%= attachment_image_tag @item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 
-    <%= @cd.title %>
-    <%= @cd.artist.name %>
+    <%= @item.title %>
+    <%= @item.artist.name %>
     
-    <tr><p>￥</p><%= @cd.price %></tr>
-    <%= @cd.status %>
+    <tr><p>￥</p><%= @item.price %></tr>
+    <%= @item.status %>
     
-    <% @songs.each do |song| %>
-        <%= sond.title %>
+    <% @item.disks.each do |disk| %>
+        <% disk.songs.each do |song| %>
+            <%= song.title %>
+            <% end %>
     <% end %>
-    </table>
+</table>
     

@@ -1,15 +1,17 @@
 class Users::CartItemsController < ApplicationController
   def index
-    @cd = Cart_item.all
+    @cart = CartItem.all
   end
   
   def create
-    @cart = current_cart
-    @item = Item.find(params[:item_id])
-    
+        cart = CartItem.new(cart_item_params)
+        cart.user_id = current_user.id
+        cart.save
+        redirect_to users_items_path  
   end
   
   private
     def cart_item_params
+      params.require(:cart_item).permit(:item_id)
     end
 end

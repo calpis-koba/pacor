@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :users do
-    get 'cart_items/index'
-  end
+  
   namespace :users, :path => ""  do
     resources :items, only:[:index, :show]
     resources :cart_items, only:[:index, :create, :update, :destroy]

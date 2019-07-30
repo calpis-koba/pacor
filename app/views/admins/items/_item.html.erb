@@ -1,0 +1,42 @@
+
+<h2>商品登録</h2>
+<%= form_for [:admins, @cd] do |f| %>
+
+<p>アーティスト名</p>
+<%= f.select :artist_id, artist.collect {|p| [p.name, p.id]}, :prompt => "選択してください" %>
+
+<p>シングル/アルバム名</p>
+<%= f.text_field :title %>
+
+<p>ジャケット画像</p>
+<%= f.attachment_field :jacket_image %>
+
+<p>価格</p>
+<%= f.text_field :price %>
+
+<p>レーベル名</p>
+<%= f.select :label_id, label.collect {|p| [p.name, p.id]}, :prompt => "選択してください" %>
+
+<p>ジャンル名</p>
+<%= f.select :jenre_id, jenre.collect {|p| [p.name, p.id]}, :prompt => "選択してください" %>
+
+<p>ステータス</p>
+<%= f.select :status, ["販売中","販売停止"], :prompt => "選択してください" %>
+
+<p>在庫数</p>
+<%= f.number_field :stock %>
+
+
+<div class="disks">
+    <%= f.fields_for :disks do |disk| %>
+      <%= f.label "disk" %>
+      <%= render "disk_fields", f: disk %>
+    <% end %>
+    <div class="links">
+      <%= link_to_add_association "ディスクを追加", f, :disks %>
+    </div>
+  </div>
+
+<%= f.submit "登録" %>
+
+<% end %>

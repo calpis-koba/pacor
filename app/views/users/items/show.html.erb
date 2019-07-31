@@ -1,0 +1,5 @@
+      <%= render "admins/items/list", item: @item %>
+      
+      <%= form_for [:users, @cart] do |f| %>
+        <%= f.submit "カートに入れる" %>
+      <% end %>

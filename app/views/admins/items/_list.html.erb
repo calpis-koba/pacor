@@ -12,6 +12,9 @@
     <tr><p>￥</p><%= item.price %></tr>
     <%= item.status %>
     
+    <p>在庫数</p>
+    <%= item.stock %>
+    
     <% item.disks.each do |disk| %>
         <% disk.songs.each do |song| %>
             <%= song.title %>

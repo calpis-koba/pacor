@@ -6,5 +6,8 @@ class Order < ApplicationRecord
     validates :payment, presence: true
     validates :postal_code, presence: true, length: {in: 5.. 9}
     validates :address, presence: true
+    
+    accepts_nested_attributes_for :order_details
+
 
 end

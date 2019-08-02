@@ -1,4 +1,42 @@
 <h1>カート</h1>
-<%= @cart.each do |cart| %>
-<%= cart.title %>
+<table>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+<% @cart.each do |cart| %>
+<tr>
+    <td>
+        <%= attachment_image_tag cart.item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+    </td>
+    <td>
+        <%= cart.item.title %>
+        <%= cart.item.artist.name %>
+    </td>
+    <td>
+        <p>価格</p>
+        <%= cart.item.price %>
+        <p>数</p>
+        <%= cart.amount %>
+        <p>在庫</p>
+        <%= cart.item.stock %>
+    </td>
+    <td>
+        <p>追加</p>
+        <%= link_to "削除", users_cart_items_path ,　method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </td>
+</tr>
+
 <% end %>
+
+<p>合計金額</p>
+<%= @total_price %>
+
+<%= form_for [:users, @order] do |f| %>
+    <%= f.hidden_field :cart_item_id, :value => cart_item.id %>
+    <%= f.submit "購入" %>
+<% end %>
+
+<p>購入</p>
+
+</table>

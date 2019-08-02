@@ -1,5 +1,7 @@
       <%= render "admins/items/list", item: @item %>
       
       <%= form_for [:users, @cart] do |f| %>
+        <%= f.select :amount, @current_stock_array.collect {|p| [p]}, :prompt => "選択してください" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
         <%= f.submit "カートに入れる" %>
       <% end %>

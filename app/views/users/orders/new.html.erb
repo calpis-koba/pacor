@@ -1,0 +1,13 @@
+<%= form_tag users_orders_path do  %>
+<p>配送</p>
+
+<label>
+<%= radio_button :address, @user.address %>
+</label>
+<%= @user.postal_code %>
+<%= @user.address %>
+
+
+
+
+<% end %>

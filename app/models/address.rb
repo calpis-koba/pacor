@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-    belogs_to	:users
+    belongs_to	:users
     validates	:name,	presence: true, length: {in: 1.. 30}
     validates	:postal_code, length: {in: 5.. 9}, format: { with: /\w/ }
     validates   :address, presence: true

@@ -12,7 +12,9 @@ class Users::CartItemsController < ApplicationController
   def create
         cart = CartItem.new(cart_item_params)
         cart.user_id = current_user.id
+        # order = Order.new(ordet_params)
       if cart.save
+        # order.save
         redirect_to users_cart_items_path  
       else 
         p cart.errors.full_messages
@@ -29,5 +31,9 @@ class Users::CartItemsController < ApplicationController
   private
     def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount)
+    end
+    
+    def order_params
+      params.require(:order).permit(:total_price)
     end
 end

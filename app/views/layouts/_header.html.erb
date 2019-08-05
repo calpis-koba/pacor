@@ -15,6 +15,7 @@
           <li><%= link_to ' top',users_items_path,class: 'glyphicon glyphicon-home home' %></li>
           <li><%= link_to ' mypage',users_user_path(current_user),class: 'glyphicon glyphicon-link about' %></li>
           <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-in sign_in'%></li>
+          <li><%= link_to ' cart ', users_cart_items_path %></li>
         <% else %>
            <%= link_to "login", new_user_registration_path %>
         <% end %>

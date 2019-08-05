@@ -13,7 +13,8 @@ class Users::OrdersController < ApplicationController
         if order_pay.save
             redirect_to users_order_details_path
         else
-            redirect_to new_users_orders_path
+            p order.errors.full_messages
+            redirect_to new_users_order_path
         end
     end
     

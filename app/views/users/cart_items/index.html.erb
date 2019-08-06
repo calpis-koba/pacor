@@ -23,7 +23,7 @@
     </td>
     <td>
         <p>追加</p>
-        <%= link_to "削除", users_cart_items_path ,　method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <%= link_to "削除", users_cart_item_path(cart) ,　method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </td>
 </tr>
 
@@ -32,11 +32,6 @@
 <p>合計金額</p>
 <%= @total_price %>
 
-<%= form_for [:users, @order] do |f| %>
-    <%= f.hidden_field :cart_item_id, :value => cart_item.id %>
-    <%= f.submit "購入" %>
-<% end %>
-
-<p>購入</p>
+<%= link_to "購入", new_users_order_path %>
 
 </table>

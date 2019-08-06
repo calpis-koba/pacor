@@ -1,5 +1,5 @@
 class OrderDetail < ApplicationRecord
-    belongs_to :item_params
+    belongs_to :item
     belongs_to :order
     
     validates :cd_amount, presence: true

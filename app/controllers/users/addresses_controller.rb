@@ -1,11 +1,16 @@
 class Users::AddressesController < ApplicationController
-    def create
-        address = Address.new(address_params)
-        address.save
+    def edit
+        @address = Address.find[params(:id)]
     end
     
-    private
+    def update
+        address = Address.find(params[:id])
+        address.update(address_params)
+        redirect_to new_users_order_path
+    end
+    
+    privated
         def address_params
-            params.require(:address).permit(:payment, :postal_code, :address)
+            params.require(:address).permit(:name, :postal_code, :address, :prefectures)
         end
 end

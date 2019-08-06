@@ -3,6 +3,9 @@ class Users::CartItemsController < ApplicationController
     @total_price = 0
     @item_total_price = 0
     @cart = CartItem.all
+    # binding.pry
+    @order = Order.new
+    @order_detail = OrderDetail.new
     @cart.each do |cart|
       @item_total_price = cart.item.price * cart.amount
       @total_price += @item_total_price
@@ -12,9 +15,7 @@ class Users::CartItemsController < ApplicationController
   def create
         cart = CartItem.new(cart_item_params)
         cart.user_id = current_user.id
-        # order = Order.new(ordet_params)
       if cart.save
-        # order.save
         redirect_to users_cart_items_path  
       else 
         p cart.errors.full_messages
@@ -22,8 +23,13 @@ class Users::CartItemsController < ApplicationController
       end
   end
   
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @item = @cart_item.item
+  end
+  
   def destroy
-    @item = Item.find(params[:id])
+    @item = CartItem.find(params[:id])
     @item.destroy
     redirect_to users_cart_items_path
   end

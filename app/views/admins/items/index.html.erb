@@ -1,15 +1,23 @@
-<table>
- <%= link_to "新規登録", new_admins_item_path %>
-<thead>
-<tr>
-    <th><p>ジャケット</p></th>
-    <th><p>タイトル</p></th>
-    <th><p>アーティスト</p></th>
-    <th><p>在庫</p></th>
-    <th></th>
-</tr>
-</thead>
+<div class="container">
+  <div class="row">
+    <%= link_to "新規登録", new_admins_item_path, class: "btn btn-info" %>
+    <hr>
+    <% @item.each do |item| %>
+              <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <%= attachment_image_tag item, :jacket_image, :fill, 150, 150, fallback: "no_image.jpg", size: "150x150" %>
+              </div>
+              <div class="col-sm-6">
+                <h3><%= item.title %> - <%= item.artist.name %></h3>
+                <p>在庫数: <%= item.stock %></p>
+                <p><%= item.status ? "販売中" : "売り切れ" %></p>
 
+<<<<<<< HEAD
 <tbody>
     <% @item.each do |item| %>
 <tr>
@@ -37,3 +45,16 @@
     <% end %>
 </tbody>
 </table>
+=======
+                <%= link_to "show", admins_item_path(item), class: "btn btn-success" %>
+              </div>
+            </div>
+
+        </div>
+      </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+>>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4

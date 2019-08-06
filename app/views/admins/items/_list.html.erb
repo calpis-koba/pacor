@@ -10,30 +10,30 @@
 </thead>
 
 <tbody>
-    <% cd.each do |cd| %>
+    <% item.each do |item| %>
 <tr>
 
 <td>
-    <%= attachment_image_tag cd, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+    <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 </td>
 
 <td>
-    <%= cd.title %>
+    <%= item.title %>
 </td>
 
 <td>
-    <%= cd.artist.name %>
+    <%= item.artist.name %>
 </td>
 
 <td>
-    <%= cd.stock %>
+    <%= item.stock %>
 </td>
 
 <td>
     <%= button_to 'カートに入れる', users_cart_items_path %>
 </td>
 
-</tr>				
+</tr>
     <% end %>
 </tbody>
 </table>

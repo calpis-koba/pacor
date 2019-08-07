@@ -1,0 +1,28 @@
+<h2>ユーザ詳細</h2>
+
+    <%= @user.last_name %>
+    <%= @user.first_name %>
+
+    <%= @user.kana_last_name %>
+    <%= @user.kana_fisrt_name %>
+
+    <%= @user.postal_code %>
+    <%= @user.address %>
+
+    <%= @user.phone %>
+    <%= @user.email %>
+
+
+
+<% @user.addresses.each do |address| %>
+
+    <%= address.prefectures %>
+    <%= address.address %>
+    <p>削除</p>
+
+<% end %>
+
+
+<% @user.orders.each do |order| %>
+    <%= order
+<% end %>

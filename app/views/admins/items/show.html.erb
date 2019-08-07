@@ -12,8 +12,10 @@
     <tr><p>￥</p><%= @item.price %></tr>
     <%= @item.status %>
 
-    <% @songs.each do |song| %>
-        <%= sond.title %>
+    <% @item.disks.each do |disk| %>
+        <% disk.songs.each do |song| %>
+            <%= song.title %>
+            <% end %>
     <% end %>
-    </table>
+</table>
 

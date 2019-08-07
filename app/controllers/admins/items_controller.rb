@@ -3,8 +3,6 @@ class Admins::ItemsController < ApplicationController
 
     def index
         @item = Item.all
-
-
     end
 
     def edit
@@ -17,7 +15,6 @@ class Admins::ItemsController < ApplicationController
 
     def show
         @item = Item.find(params[:id])
-        @songs = @item.disks.songs
     end
 
     def new

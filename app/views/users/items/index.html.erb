@@ -1,1 +1,39 @@
-    <%= render 'admins/items/list', item: @item %>
+<table>
+<thead>
+<tr>
+    <th><p>ジャケット</p></th>
+    <th><p>タイトル</p></th>
+    <th><p>アーティスト</p></th>
+    <th><p>在庫</p></th>
+    <th></th>
+</tr>
+</thead>
+
+<tbody>
+    <% @item.each do |item| %>
+<tr>
+
+<td>
+    <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+</td>
+
+<td>
+    <%= item.title %>
+</td>
+
+<td>
+    <%= item.artist.name %>
+</td>
+
+<td>
+    <%= item.stock %>
+</td>
+
+<td>
+    <%= link_to "show", users_item_path(item) %>
+</td>
+
+</tr>
+    <% end %>
+</tbody>
+</table>

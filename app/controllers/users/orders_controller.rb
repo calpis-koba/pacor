@@ -1,33 +1,50 @@
 class Users::OrdersController < ApplicationController
-    def show
-        @cart_items = current_cart.cart_items
+    
+    def new
+        @order = Order.new
+        @user = current_user
+        @address = Address.new
     end
+    
+    def create
+       
+        address = current_user.addresses.build
+        address.name = params[:name]
+        address.address = params[:address]
+        address.postal_code = params[:postal_code]
+        address.prefectures = params[:prefectures]
+        address.save
+        sum = 0
+        order = Order.new
+        order.address = params[:address]
+        order.user_id = current_user.id
+        
+         current_user.cart_items.each do |cart_item|
+             sum += cart_item.item.price
+         end
+         order.total_price = sum 
+         order.save
 
-  # 商品一覧画面から、「商品購入」を押した時のアクション
-    def add_item
-    if   @cart_item.blank?
-         @cart_item = current_cart.cart_items.build(product_id: params[:product_id])
+        current_user.cart_items.each do |cart_item|
+            
+            @item = OrderDetail.new
+            @item.item_id =  cart_item.item_id
+            @item.order_id = order.id
+            @item.cd_price = cart_item.item.price
+            @item.cd_amount = cart_item.amount
+            @item.save
+            
+        end
+        redirect_to users_orders_path
     end
-        @cart_item.quantity += params[:quantity].to_i
-        @cart_item.save
-        redirect_to current_cart
+    
+    private
+    
+    def order_params
+      params.require(:order).permit(:total_price,:payment, :postal_code, :address, order_details_attributes: [:item_id, :cd_amount, :cd_price])
     end
-
-  # カート詳細画面から、「更新」を押した時のアクション
-    def update_item
-        @cart_item.update(quantity: params[:quantity].to_i)
-        redirect_to current_cart
-    end
-
-　# カート詳細画面から、「削除」を押した時のアクション
-    def delete_item
-        @cart_item.destroy
-        redirect_to current_cart
-    end
-
-  private
-
-    def setup_cart_item!
-        @cart_item = current_cart.cart_items.find_by(product_id: params[:product_id])
+    
+    def address_params
+    　params.require(:address).permit(:name, :postal_code, :address, :prefectures)
     end
 end

@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :admins do
-    get 'users/index'
-    get 'users/show'
-    get 'users/edit'
-  end
   namespace :users, :path => ""  do
     resources :items, only:[:index, :show, :destory]
     resources :cart_items, only:[:index, :create, :update, :destroy]
@@ -21,6 +16,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show, :new, :create, :edit, :update, :destroy]
     resources :labels, only:[:index, :new, :create]
     resources :addresses, only:[:destroy]
+    resources :users, only:[:index, :show, :edit, :update, :destory]
   	root "items#index"
   end
   

@@ -1,7 +1,6 @@
 class CartItem < ApplicationRecord
-    belongs_to :items
-    belongs_to :order
+    belongs_to :item
+    belongs_to :user
     
-    validates :cd_amount, presence: true
-    validates :cd_price, presence: true
+    
 end

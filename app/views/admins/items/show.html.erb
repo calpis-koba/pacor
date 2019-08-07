@@ -5,7 +5,6 @@
     <%= @item.jenre.name %>
 
     <%= attachment_image_tag @item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-
     <%= @item.title %>
     <%= @item.artist.name %>
 
@@ -16,4 +15,3 @@
         <%= sond.title %>
     <% end %>
     </table>
-

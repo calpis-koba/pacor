@@ -3,8 +3,6 @@ class Admins::ItemsController < ApplicationController
 
     def index
         @item = Item.all
-
-
     end
 
     def edit

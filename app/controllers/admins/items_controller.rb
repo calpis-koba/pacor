@@ -4,12 +4,15 @@ class Admins::ItemsController < ApplicationController
     def index
         @item = Item.all
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         
 =======
 
 
 >>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4
+=======
+>>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
     end
 
     def edit
@@ -23,9 +26,12 @@ class Admins::ItemsController < ApplicationController
     def show
         @item = Item.find(params[:id])
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         @songs = @item.disks.songs
 >>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4
+=======
+>>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
     end
 
     def new

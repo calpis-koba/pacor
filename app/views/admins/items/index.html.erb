@@ -17,38 +17,7 @@
                 <p>在庫数: <%= item.stock %></p>
                 <p><%= item.status ? "販売中" : "売り切れ" %></p>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<tbody>
-    <% @item.each do |item| %>
-<tr>
 
-<td>
-    <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-</td>
-
-<td>
-    <%= link_to item.title, admins_item_path(item) %>
-</td>
-
-<td>
-    <%= item.artist.name %>
-</td>
-
-<td>
-    <%= item.stock %>
-</td>
-
-<td>
-    <%= link_to "編集", edit_admins_item_path(item) %>
-</td>
-</tr>				
-    <% end %>
-</tbody>
-</table>
-=======
-=======
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
                 <%= link_to "show", admins_item_path(item), class: "btn btn-success" %>
               </div>
             </div>
@@ -60,7 +29,4 @@
     <% end %>
   </div>
 </div>
-<<<<<<< HEAD
->>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4
-=======
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
+

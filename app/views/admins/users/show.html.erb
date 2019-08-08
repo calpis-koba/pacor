@@ -1,31 +1,31 @@
 <h2><%= @user.last_name %><%= @user.first_name %></h2>
 
-<h1>ユーザ詳細</h1>
+<h2>ユーザ詳細</h2>
 
-<h2>名前(漢字)</h2>
+<h3>名前(漢字)</h3>
 <%= @user.last_name %>
 <%= @user.first_name %>
 
-<h2>名前(カナ)</h2>
+<h3>名前(カナ)</h3>
 <%= @user.kana_last_name %>
 <%= @user.kana_first_name %>
 
-<h2>郵便番号</h2>
+<h3>郵便番号</h3>
 <%= @user.postal_code %>
 
-<h2>住所</h2>
+<h3>住所</h3>
 <%= @user.address %>
 
-<h2>電話番号</h2>
+<h3>電話番号</h3>
 <%= @user.phone %>
 
-<h2>メールアドレス</h2>
+<h3>メールアドレス</h3>
 <%= @user.email %>
 
-<h2>ステータス</h2>
+<h3>ステータス</h3>
 
 
-<h1>登録住所一覧</h1>
+<h2>登録住所一覧</h2>
 
 <% @user.addresses.each do |address| %>
     <%= address.prefectures %>
@@ -33,7 +33,7 @@
     <p>削除</p>
 <% end %>
 
-<h1>受注履歴</h1>
+<h2>受注履歴</h2>
 
 <% @user.orders.each do |order| %>
     <%= order.id %>

@@ -1,53 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
-
 <h2>商品詳細</h2>
 <table>
     <%= item.label.name %>
     <%= item.jenre.name %>
-<<<<<<< HEAD
-=======
-<table>
-<thead>
-<tr>
-    <th><p>ジャケット</p></th>
-    <th><p>タイトル</p></th>
-    <th><p>アーティスト</p></th>
-    <th><p>在庫</p></th>
-    <th></th>
-</tr>
-</thead>
-
-<tbody>
-    <% item.each do |item| %>
-<tr>
-
-<td>
-=======
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
     <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
 
     <%= item.title %>
     <%= item.artist.name %>
-<<<<<<< HEAD
-</td>
-
-<td>
-    <%= item.stock %>
-</td>
->>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4
-
-    <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-
-<<<<<<< HEAD
-    <%= item.title %>
-    <%= item.artist.name %>
-    
-=======
-
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d
     <tr><p>￥</p><%= item.price %></tr>
     <%= item.status %>
 
@@ -60,14 +18,3 @@
             <% end %>
     <% end %>
 </table>
-<<<<<<< HEAD
-    
-=======
-</tr>
-    <% end %>
-</tbody>
-</table>
->>>>>>> 58863b48f94e1e08b6dc41f5fafa74f9c5b354d4
-=======
-
->>>>>>> 3b6c6dac12615b234a1dbda5ddec79ea9c3b341d

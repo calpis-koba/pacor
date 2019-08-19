@@ -38,3 +38,5 @@
 <% @user.orders.each do |order| %>
     <%= order.id %>
 <% end %>
+
+<%= link_to "編集", edit_admins_user_path(@user) %>

@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders
   has_many :addresses, dependent: :destroy
+  
+
   validates :last_name,length: {in: 1.. 15},format: { with: /\A\p{blank}*[^\p{katakana}\p{blank}ｧ-ﾝﾞﾟ]+\p{blank}*\z/}
   validates :first_name,length: {in: 1.. 15},format: { with: /\A\p{blank}*[^\p{katakana}\p{blank}ｧ-ﾝﾞﾟ]+\p{blank}*\z/}
   validates :kana_last_name,length: {in: 1.. 15},format: { with: /\A[\p{katakana}-]+\z/}

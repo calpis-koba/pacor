@@ -14,18 +14,25 @@ class Users::CartItemsController < ApplicationController
   
   def create
         cart = CartItem.new(cart_item_params)
-        cart.user_id = current_user.id
-      if cart.save
-        redirect_to users_cart_items_path  
+        cart.user_id = current_user.id 
+        # p cart.errors.full_messages
+      if current_user.cart_items.exists?(item_id: cart.item_id)
+        update_cart_item = current_user.cart_items.find_by(item_id: cart.item_id)
+        update_cart_item.amount += cart.amount
+        update_cart_item.update(amount: update_cart_item.amount)
       else 
-        p cart.errors.full_messages
-        redirect_to users_items_path
+        cart.save
       end
+      redirect_to users_cart_items_path  
   end
   
   def update
-    @cart_item = CartItem.find(params[:id])
-    @item = @cart_item.item
+    cart = CartItem.find(params[:id])
+    cart.amount = 1
+    update_cart_item = current_user.cart_items.find_by(item_id: cart.item_id)
+    update_cart_item.amount += cart.amount
+    update_cart_item.update(amount: update_cart_item.amount)
+    redirect_to users_cart_items_path
   end
   
   def destroy

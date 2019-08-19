@@ -1,10 +1,14 @@
+<table>
 <% @orders.each do |order| %>
+    <br>
     <%= order.created_at.strftime('%Y/%m/%d') %>
-    <%= order.order_details.item.jacket_image %>
     <p>注文番号</p>
     <%= order.id %>
     <p>ステータス</p>
     
     <p>合計金額</p>
     <%= order.total_price %>
+    <%= link_to "show", admins_order_path(order) %>
+    </br>
 <% end %>
+</table>

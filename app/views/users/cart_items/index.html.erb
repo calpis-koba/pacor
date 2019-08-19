@@ -21,17 +21,22 @@
         <p>在庫</p>
         <%= cart.item.stock %>
     </td>
+    <%= cart.item.status %>
     <td>
-        <p>追加</p>
-        <%= link_to "削除", users_cart_item_path(cart) ,　method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        <% if cart.amount < cart.item.stock %>
+            <%= link_to "追加",users_cart_item_path(cart), method: :patch, "data-confirm" => "一つ追加しますか？" %>
+        <% end %>
+        <%= link_to "削除",users_cart_item_path(cart), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     </td>
 </tr>
 
 <% end %>
 
+<% if @total_price != 500 %>
 <p>合計金額</p>
 <%= @total_price %>
 
 <%= link_to "購入", new_users_order_path %>
+<% end %>
 
 </table>

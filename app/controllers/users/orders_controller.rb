@@ -31,7 +31,7 @@ class Users::OrdersController < ApplicationController
         
         sum = 0
         order = Order.new
-        order.address = params[:address]
+        order.address = address.address
         order.user_id = current_user.id
         
          current_user.cart_items.each do |cart_item|
@@ -52,7 +52,8 @@ class Users::OrdersController < ApplicationController
             
         end
         cart = current_user.cart_items
-        cart.destory
+        # binding.pry
+        cart.destroy_all
         redirect_to users_orders_path
     end
     

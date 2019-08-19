@@ -7,9 +7,9 @@
     <%= order_detail.item.stock %>
 <% end %>
 
-<%= order.postal_code %>
-<%= order.address %>
+<%= @order.postal_code %>
+<%= @order.address %>
 
-<%= order.payment %>
+<%= @order.payment %>
 <p>送料: ￥500</p>
-<%= order.total_price %>
+<%= @order.total_price %>

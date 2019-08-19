@@ -1,0 +1,15 @@
+<% @order.order_details.each do |order_detail| %>
+    <%= order_detail.item.jacket_image %>
+    <%= order_detail.item.title %>
+    <%= order_detail.item.artist.name %>
+    <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
+    <p>在庫</p>
+    <%= order_detail.item.stock %>
+<% end %>
+
+<%= order.postal_code %>
+<%= order.address %>
+
+<%= order.payment %>
+<p>送料: ￥500</p>
+<%= order.total_price %>

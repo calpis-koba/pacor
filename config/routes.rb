@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :labels, only:[:index, :new, :create]
     resources :addresses, only:[:destroy]
     resources :users, only:[:index, :show, :edit, :update, :destory]
+    resources :orders, only:[:index, :show, :update]
   	root "items#index"
   end
   

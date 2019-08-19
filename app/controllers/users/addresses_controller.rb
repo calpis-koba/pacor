@@ -9,7 +9,13 @@ class Users::AddressesController < ApplicationController
         redirect_to new_users_order_path
     end
     
-    privated
+    def destroy
+        @address = Address.find(params[:id])
+        @address.destroy
+        redirect_to new_users_order_path
+    end
+    
+    private
         def address_params
             params.require(:address).permit(:name, :postal_code, :address, :prefectures)
         end

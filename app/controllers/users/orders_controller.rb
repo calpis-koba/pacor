@@ -7,13 +7,28 @@ class Users::OrdersController < ApplicationController
     end
     
     def create
-       
+        
         address = current_user.addresses.build
-        address.name = params[:name]
-        address.address = params[:address]
-        address.postal_code = params[:postal_code]
-        address.prefectures = params[:prefectures]
-        address.save
+
+        if params[:a].to_i == -1
+            address.name = current_user.name
+            address.address = current_user.address
+            address.postal_code = current_user.postal_code
+        elsif params[:a].to_i == 0
+            address.name = params[:name]
+            address.address = params[:address]
+            address.postal_code = params[:postal_code]
+            address.prefectures = params[:prefectures]
+            address.save
+        else
+            ad = Address.find(params[:id])
+            address.name = ad.name
+            address.address = ad.address
+            address.postal_code = ad.postal_code
+        end
+        
+        # binding.pry
+        
         sum = 0
         order = Order.new
         order.address = params[:address]
@@ -22,7 +37,8 @@ class Users::OrdersController < ApplicationController
          current_user.cart_items.each do |cart_item|
              sum += cart_item.item.price
          end
-         order.total_price = sum 
+         order.total_price = sum
+        #  binding.pry
          order.save
 
         current_user.cart_items.each do |cart_item|
@@ -35,16 +51,12 @@ class Users::OrdersController < ApplicationController
             @item.save
             
         end
+        cart = current_user.cart_items
+        cart.destory
         redirect_to users_orders_path
     end
     
     private
     
-    def order_params
-      params.require(:order).permit(:total_price,:payment, :postal_code, :address, order_details_attributes: [:item_id, :cd_amount, :cd_price])
-    end
     
-    def address_params
-    　params.require(:address).permit(:name, :postal_code, :address, :prefectures)
-    end
 end

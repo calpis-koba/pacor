@@ -1,0 +1,10 @@
+<% @orders.each do |order| %>
+    <%= order.created_at.strftime('%Y/%m/%d') %>
+    <%= order.order_details.item.jacket_image %>
+    <p>注文番号</p>
+    <%= order.id %>
+    <p>ステータス</p>
+    
+    <p>合計金額</p>
+    <%= order.total_price %>
+<% end %>

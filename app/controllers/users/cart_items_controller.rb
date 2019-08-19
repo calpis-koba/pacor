@@ -1,8 +1,8 @@
 class Users::CartItemsController < ApplicationController
   def index
-    @total_price = 0
+    @total_price = 500
     @item_total_price = 0
-    @cart = CartItem.all
+    @cart = current_user.cart_items
     # binding.pry
     @order = Order.new
     @order_detail = OrderDetail.new

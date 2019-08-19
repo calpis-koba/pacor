@@ -3,28 +3,30 @@
     <p>配送</p>
     <br>
     <label>
-        <%= radio_button_tag "order.address", @user.address %>この住所を使う
+        <%= radio_button_tag "a", -1 %>この住所を使う
     </label>
     <%= @user.postal_code %>
     <%= @user.address %>
     </br>
     
     <br>
-    <% @user.addresses.each do |address| %>
+    <% @user.addresses.each do |ad| %>
         <label>
-            <%= radio_button_tag "order.address", address.id %>この住所を使う
+            <%= radio_button_tag "a", ad.id %>この住所を使う
         </label>
-            <%= address.name %>
-            <%= address.postal_code %>
-            <%= address.address %>
-            <%= link_to "編集",edit_users_address_path(address) %>
-            <p>削除</p>
+        <br>
+            <%= ad.name %>
+            <%= ad.postal_code %>
+            <%= ad.address %>
+            <%= link_to "編集",edit_users_address_path(ad) %>
+            <%= link_to "削除",users_address_path(ad), method: :delete %>
+            </br>
     <% end %>
     </br>
     
     <br>
     <label>
-         <%= radio_button_tag "order.address", @address %>この住所を使う
+         <%= radio_button_tag "a", 0 %>この住所を使う
     </label>
     
 
@@ -47,13 +49,13 @@
     <table>
     <br>
     <label>
-         <%= radio_button_tag "order.payment", 0 %>代引き
+         <%= radio_button_tag "payment", 0 %>代引き
     </label>
     </br>
     
     <br>
     <label>
-         <%= radio_button_tag "order.payment", 1 %>銀行振り込み
+         <%= radio_button_tag "payment", 1 %>銀行振り込み
     </label>
     </br>
     <tr>

@@ -11,6 +11,7 @@
           <li><%= link_to ' レーベル',admins_labels_path ,class: 'glyphicon glyphicon-book books'%></li>
           <li><%= link_to ' ジャンル',admins_jenres_path ,class: 'glyphicon glyphicon-book books'%></li>
           <li><%= link_to ' ユーザ一覧', admins_users_path %></li>
+          <li><%= link_to ' 注文履歴', admins_orders_path %></li>
           <li><%= link_to ' logout', destroy_admin_session_path, method: :delete,class: 'glyphicon glyphicon-log-out logout' %></li>
         <% elsif user_signed_in? %>
           <li><%= link_to ' top',users_items_path,class: 'glyphicon glyphicon-home home' %></li>
@@ -18,7 +19,7 @@
           <li><%= link_to ' logout', destroy_user_session_path, method: :delete,class: 'glyphicon glyphicon-log-in sign_in'%></li>
           <li><%= link_to ' cart ', users_cart_items_path %></li>
         <% else %>
-           <%= link_to "login", new_user_registration_path %>
+           <%= link_to "login", new_user_session_path %>
         <% end %>
       </ul>
     </nav>

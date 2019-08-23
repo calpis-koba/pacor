@@ -1,1 +1,36 @@
-<h1>ご注文ありがとうございました。</h1>
+<table>
+<% @orders.each do |order| %>
+    <br>
+    <%= order.created_at.strftime('%Y/%m/%d') %>
+    <p>商品タイトル</p><p>数</p>
+    <% order.order_details.each do |order_detail| %>
+    <%= order_detail.item.title %>
+    <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
+    <% end %>
+    
+    <p>注文番号</p>
+    <%= order.id %>
+    <p>ステータス</p>
+    <% if order.status == 0 %>
+        <p>商品準備中</p>
+    <% else %>
+        <p>出荷中</p>
+    <% end %>
+    
+    <p>支払方法</p>
+    <% if order.payment == 0 %>
+        <p>代引き</p>
+    <% else %>
+        <p>銀行振り込み</p>
+    <% end %>
+    
+    <p>発送先</p>
+    <%= order.postal_code %>
+    <%= order.address %>
+    
+    <p>合計金額</p>
+    <%= order.total_price %>
+    <%= link_to "show", admins_order_path(order) %>
+    </br>
+<% end %>
+</table>

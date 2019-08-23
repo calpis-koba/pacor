@@ -1,40 +1,28 @@
-<table>
-<thead>
-<tr>
-    <th><p>ジャケット</p></th>
-    <th><p>タイトル</p></th>
-    <th><p>アーティスト</p></th>
-    <th><p>在庫</p></th>
-    <th></th>
-</tr>
-</thead>
 
-<tbody>
+<div class="container">
+  <div class="row">
+    <hr>
     <% @item.each do |item| %>
-<tr>
+              <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <%= attachment_image_tag item, :jacket_image, :fill, 150, 150, fallback: "no_image.jpg", size: "150x150" %>
+              </div>
+              <div class="col-sm-6">
+                <h3><%= item.title %> - <%= item.artist.name %></h3>
 
-<td>
-    <%= attachment_image_tag item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-</td>
+                <%= link_to "show", users_item_path(item), class: "btn btn-success" %>
+              </div>
+            </div>
 
-<td>
-    <%= item.title %>
-</td>
+        </div>
+      </div>
+      </div>
 
-<td>
-    <%= item.artist.name %>
-</td>
-
-<td>
-    <%= item.stock %>
-</td>
-
-<td>
-    <%= link_to "show", users_item_path(item) %>
-</td>
-
-</tr>
     <% end %>
-</tbody>
-</table>
-
+  </div>
+</div>

@@ -1,7 +1,34 @@
-      <%= render "admins/items/list", item: @item %>
+<h2>商品詳細</h2>
+<table>
+  <div class="container">
+    <%= @item.label.name %>
+    <%= @item.jenre.name %>
+    <%= attachment_image_tag @item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+
+    <%= @item.title %>
+    <%= @item.artist.name %>
+    <tr><p>￥</p><%= @item.price %></tr>
+
+    <% if @item.status == true %>
+        <p>販売中</p>
+    <% else %>
+        <p>販売停止</p>
+    <% end %>
+    
+    <p>在庫数</p>
+    <%= @item.stock %>
+
+    <% @item.disks.each do |disk| %>
+        <% disk.songs.each do |song| %>
+            <%= song.title %>
+            <% end %>
+    <% end %>
+
       
-      <%= form_for [:users, @cart] do |f| %>
-        <%= f.select :amount, @current_stock_array.collect {|p| [p]}, :prompt => "選択してください" %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.submit "カートに入れる" %>
-      <% end %>
+    <%= form_for [:users, @cart] do |f| %>
+      <%= f.select :amount, @current_stock_array.collect {|p| [p]}, :prompt => "選択してください" %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit "カートに入れる" %>
+    <% end %>
+  </div>
+</table>

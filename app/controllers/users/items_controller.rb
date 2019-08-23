@@ -1,6 +1,6 @@
 class Users::ItemsController < ApplicationController
     def index
-        @item = Item.all
+        @item = search_items
     end
     
     def show
@@ -18,6 +18,14 @@ class Users::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to users_cart_items_path
+  end
+  
+  def search_items
+      if params[:search]
+        Item.search(params[:search])
+      else
+        Item.page(params[:page]).reverse_order
+      end
   end
     
 end

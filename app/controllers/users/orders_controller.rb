@@ -1,5 +1,8 @@
 class Users::OrdersController < ApplicationController
-    
+   
+    def index
+        @orders = current_user.orders
+    end
     def new
         @order = Order.new
         @user = current_user
@@ -21,6 +24,7 @@ class Users::OrdersController < ApplicationController
             address.prefectures = params[:prefectures]
             address.save
         else
+            params[:id] = params[:a]
             ad = Address.find(params[:id])
             address.name = ad.name
             address.address = ad.address
@@ -54,7 +58,7 @@ class Users::OrdersController < ApplicationController
         cart = current_user.cart_items
         # binding.pry
         cart.destroy_all
-        redirect_to users_orders_path
+        redirect_to users_orders_top_path
     end
     
     private

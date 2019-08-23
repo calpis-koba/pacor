@@ -7,8 +7,13 @@
     <%= item.title %>
     <%= item.artist.name %>
     <tr><p>￥</p><%= item.price %></tr>
-    <%= item.status %>
 
+    <% if item.status == true %>
+        <p>販売中</p>
+    <% else %>
+        <p>販売停止</p>
+    <% end %>
+    
     <p>在庫数</p>
     <%= item.stock %>
 

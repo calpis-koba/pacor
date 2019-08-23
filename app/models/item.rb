@@ -16,4 +16,9 @@ class Item < ApplicationRecord
     
     accepts_nested_attributes_for :disks
 
+    def self.search(search)
+      return Item.all unless search
+      Item.where(['title LIKE ?', "%#{search}%"])
+    end
+    
 end

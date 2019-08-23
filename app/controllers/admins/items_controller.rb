@@ -2,7 +2,7 @@ class Admins::ItemsController < ApplicationController
       before_action:authenticate_admin!
 
     def index
-        @item = Item.all
+        @item = search_items
 
     end
 
@@ -37,6 +37,14 @@ class Admins::ItemsController < ApplicationController
         item = Item.find(params[:id])
         item.update(item_params)
         redirect_to admins_items_path
+    end
+    
+    def search_items
+      if params[:search]
+        Item.search(params[:search])
+      else
+        Item.page(params[:page]).reverse_order
+      end
     end
 
     private

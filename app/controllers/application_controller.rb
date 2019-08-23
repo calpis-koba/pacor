@@ -28,5 +28,9 @@ class ApplicationController < ActionController::Base
         new_user_registration_path
       end
     end
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @posts = Item.search(params[:search])
+  end
   
 end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :orders, only:[:index, :new, :create]
     resources :addresses, only:[:create, :edit, :update, :destroy]
     resource :user, :only => [:edit, :show, :update]
+    get '/orders/top', to: 'orders#top'
 
   end
   

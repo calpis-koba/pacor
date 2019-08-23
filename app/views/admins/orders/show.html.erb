@@ -10,6 +10,13 @@
 <%= @order.postal_code %>
 <%= @order.address %>
 
+
+
 <%= @order.payment %>
 <p>送料: ￥500</p>
 <%= @order.total_price %>
+
+<%= form_for [:admins, @order] do |f| %>
+    <%= f.select :status, ["商品準備中","出荷済み"] %>
+    <%= f.submit %>
+<% end %>

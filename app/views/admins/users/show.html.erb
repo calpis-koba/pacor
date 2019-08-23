@@ -1,42 +1,84 @@
 <h2><%= @user.last_name %><%= @user.first_name %></h2>
-
-<h2>ユーザ詳細</h2>
-
-<h3>名前(漢字)</h3>
-<%= @user.last_name %>
-<%= @user.first_name %>
-
-<h3>名前(カナ)</h3>
-<%= @user.kana_last_name %>
-<%= @user.kana_first_name %>
-
-<h3>郵便番号</h3>
-<%= @user.postal_code %>
-
-<h3>住所</h3>
-<%= @user.address %>
-
-<h3>電話番号</h3>
-<%= @user.phone %>
-
-<h3>メールアドレス</h3>
-<%= @user.email %>
-
-<h3>ステータス</h3>
-
-
-<h2>登録住所一覧</h2>
-
-<% @user.addresses.each do |address| %>
-    <%= address.prefectures %>
-    <%= address.address %>
-    <p>削除</p>
-<% end %>
-
-<h2>受注履歴</h2>
-
-<% @user.orders.each do |order| %>
-    <%= order.id %>
-<% end %>
-
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8">
+      <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab1" data-toggle="tab">ユーザー詳細</a></li>
+      <li><a href="#tab2" data-toggle="tab">登録住所一覧</a></li>
+      <li><a href="#tab3" data-toggle="tab">購入履歴一覧</a></li>
+    </ul>
+    
+    <div class="tab-content">
+      <div id="tab1" class="tab-pane active">
+        <h3>名前(漢字)</h3>
+            <%= @user.last_name %>
+            <%= @user.first_name %>
+            
+            <h3>名前(カナ)</h3>
+            <%= @user.kana_last_name %>
+            <%= @user.kana_first_name %>
+            
+            <h3>郵便番号</h3>
+            <%= @user.postal_code %>
+            
+            <h3>住所</h3>
+            <%= @user.address %>
+            
+            <h3>電話番号</h3>
+            <%= @user.phone %>
+            
+            <h3>メールアドレス</h3>
+            <%= @user.email %>
+            
+            <h3>ステータス</h3>
+      </div>
+      
+      <div id="tab2" class="tab-pane">
+            <% @user.addresses.each do |address| %>
+                <%= address.prefectures %>
+                <%= address.address %>
+                <p>削除</p>
+            <% end %>
+      </div>
+      
+      <div id="tab3" class="tab-pane">
+            <table>
+            <% @user.orders.each do |order| %>
+                <br>
+                <%= order.created_at.strftime('%Y/%m/%d') %>
+                <p>商品タイトル</p><p>数</p>
+                <% order.order_details.each do |order_detail| %>
+                <%= order_detail.item.title %>
+                <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
+                <% end %>
+                
+                <p>注文番号</p>
+                <%= order.id %>
+                <p>ステータス</p>
+                <% if order.status == 0 %>
+                    <p>商品準備中</p>
+                <% else %>
+                    <p>出荷中</p>
+                <% end %>
+                
+                <p>支払方法</p>
+                <% if order.payment == 0 %>
+                    <p>代引き</p>
+                <% else %>
+                    <p>銀行振り込み</p>
+                <% end %>
+                
+                <p>発送先</p>
+                <%= order.postal_code %>
+                <%= order.address %>
+                
+                <p>合計金額</p>
+                <%= order.total_price %>
+                <%= link_to "show", admins_order_path(order) %>
+                </br>
+            <% end %>
+            </table>
+      </div>
+     </div>
+    </div>
+</div>
 <%= link_to "編集", edit_admins_user_path(@user) %>

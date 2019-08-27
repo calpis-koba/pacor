@@ -2,7 +2,7 @@ class Admins::ItemsController < ApplicationController
       before_action:authenticate_admin!
 
     def index
-        @item = Item.all
+        @item = Item.page(params[:page]).order(created_at: :desc)
 
     end
 
@@ -39,6 +39,12 @@ class Admins::ItemsController < ApplicationController
         redirect_to admins_items_path
     end
 
+    def destroy
+        @item = Item.find(params[:id])
+        @item.destroy
+        redirect_to admins_items_path
+    end
+    
     private
     def item_params
         params.require(:item).permit(:artist_id, :label_id, :jenre_id, :title, :price, :status, :jacket_image, :stock, disks_attributes:[:id, :_destroy, songs_attributes:[:id, :title]])

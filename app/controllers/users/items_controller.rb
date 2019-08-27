@@ -1,6 +1,6 @@
 class Users::ItemsController < ApplicationController
     def index
-        @item = Item.all
+        @item = Item.page(params[:page]).order(created_at: :desc)
     end
     
     def show

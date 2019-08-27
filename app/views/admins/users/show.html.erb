@@ -1,4 +1,5 @@
-<h2><%= @user.last_name %><%= @user.first_name %></h2>
+<div class="container">
+<h2><%= @user.last_name %><%= @user.first_name %>さん</h2>
 <div class="row">
   <div class="col-sm-offset-2 col-sm-8">
       <ul class="nav nav-tabs">
@@ -9,76 +10,89 @@
     
     <div class="tab-content">
       <div id="tab1" class="tab-pane active">
-        <h3>名前(漢字)</h3>
-            <%= @user.last_name %>
-            <%= @user.first_name %>
+        <p><h4>名前(漢字)</h4>  <%= @user.last_name %><%= @user.first_name %></p>
             
-            <h3>名前(カナ)</h3>
+            
+            
+            <h4>名前(カナ)</h4>
             <%= @user.kana_last_name %>
             <%= @user.kana_first_name %>
             
-            <h3>郵便番号</h3>
+            <h4>郵便番号</h4>
             <%= @user.postal_code %>
             
-            <h3>住所</h3>
+            <h4>住所</h4>
             <%= @user.address %>
             
-            <h3>電話番号</h3>
+            <h4>電話番号</h4>
             <%= @user.phone %>
             
-            <h3>メールアドレス</h3>
+            <h4>メールアドレス</h4>
             <%= @user.email %>
-            
-            <h3>ステータス</h3>
+
+            <%= link_to "編集", edit_admins_user_path(@user), class: "btn btn-success"%>            
+            <%= link_to "削除", admins_user_path(@user), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
       </div>
       
       <div id="tab2" class="tab-pane">
             <% @user.addresses.each do |address| %>
                 <%= address.prefectures %>
                 <%= address.address %>
-                <p>削除</p>
+                <%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
             <% end %>
       </div>
       
       <div id="tab3" class="tab-pane">
-            <table>
+          
             <% @user.orders.each do |order| %>
-                <br>
-                <%= order.created_at.strftime('%Y/%m/%d') %>
-                <p>商品タイトル</p><p>数</p>
-                <% order.order_details.each do |order_detail| %>
-                <%= order_detail.item.title %>
-                <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
-                <% end %>
+                <div class="col-xs-4">
+                    <table>
+                    <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                    <tr>
+                        <th>商品タイトル</th>
+                        <th>枚数</th>
+                        <th>金額</th>
+                    </tr>
+                    
+                    <% order.order_details.each do |order_detail| %>
+                    <tr>
+                    <td><%= order_detail.item.title %></td>
+                    <td><%= order_detail.cd_amount %></td>
+                    <td>￥<%= order_detail.item.price %></td>
+                    </tr>
+                    <% end %></table>
+                </div>
                 
-                <p>注文番号</p>
-                <%= order.id %>
-                <p>ステータス</p>
-                <% if order.status == 0 %>
-                    <p>商品準備中</p>
-                <% else %>
-                    <p>出荷中</p>
-                <% end %>
-                
-                <p>支払方法</p>
-                <% if order.payment == 0 %>
-                    <p>代引き</p>
-                <% else %>
-                    <p>銀行振り込み</p>
-                <% end %>
-                
-                <p>発送先</p>
-                <%= order.postal_code %>
-                <%= order.address %>
-                
-                <p>合計金額</p>
-                <%= order.total_price %>
-                <%= link_to "show", admins_order_path(order) %>
-                </br>
+                <div class='col-xs-8'>
+                    <p>注文番号: <%= order.id %></p>
+                    
+                    <p>ステータス</p>
+                    <% if order.status == 0 %>
+                        <p>商品準備中</p>
+                    <% else %>
+                        <p>出荷中</p>
+                    <% end %>
+
+                    <p>支払方法</p>
+                    <% if order.payment == 0 %>
+                        <p>代引き</p>
+                    <% else %>
+                        <p>銀行振り込み</p>
+                    <% end %>
+                    
+                    <p>発送先: <%= order.postal_code %> <%= order.address %></p>
+                    
+                    <p>合計金額: ￥<%= order.total_price %></p>
+                    
+                    <%= link_to "show", admins_order_path(order), class: "btn btn-success" %>
+                    
+                </div>
+                <hr>
             <% end %>
-            </table>
+      
       </div>
      </div>
     </div>
 </div>
-<%= link_to "編集", edit_admins_user_path(@user) %>
+
+</div>

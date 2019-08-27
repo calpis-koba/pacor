@@ -1,4 +1,6 @@
 class Users::UsersController < ApplicationController
+    before_action :authenticate_user!
+
     def show
         @user = current_user
     end
@@ -12,6 +14,17 @@ class Users::UsersController < ApplicationController
         @user.update(user_params)
         redirect_to users_user_path(@user)
     end
+    
+    def unsubscribe_confirm
+    end
+
+  def unsubscribe
+    current_user.update_attribute(:is_deleted, true)
+    reset_session
+    flash[:success] = "退会しました"
+    redirect_to root_path
+  end
+    
     
     private
     def user_params

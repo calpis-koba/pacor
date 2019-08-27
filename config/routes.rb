@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     resources :cart_items, only:[:index, :create, :update, :destroy]
     resources :orders, only:[:index, :new, :create]
     resources :addresses, only:[:create, :edit, :update, :destroy]
-    resource :user, :only => [:edit, :show, :update]
+    
+    resource :user, :only => [:edit, :show, :update] do
+      get 'unsubscribe_confirm'
+      patch 'unsubscribe'
+    end
 
   end
   
@@ -16,7 +20,7 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show, :new, :create, :edit, :update, :destroy]
     resources :labels, only:[:index, :new, :create]
     resources :addresses, only:[:destroy]
-    resources :users, only:[:index, :show, :edit, :update, :destory]
+    resources :users, only:[:index, :show, :edit, :update, :destroy]
     resources :orders, only:[:index, :show, :update]
   	root "items#index"
   end

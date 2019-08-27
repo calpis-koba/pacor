@@ -1,7 +1,9 @@
 <%= form_with url: users_orders_path, local: true do |form| %>
     <table>
+        <hr>
     <p>配送</p>
     <br>
+    <hr>
     <label>
         <%= radio_button_tag "a", -1 %>この住所を使う
     </label>
@@ -10,7 +12,9 @@
     </br>
     
     <br>
+    
     <% @user.addresses.each do |ad| %>
+        <hr>
         <label>
             <%= radio_button_tag "a", ad.id %>この住所を使う
         </label>
@@ -25,6 +29,7 @@
     </br>
     
     <br>
+    <hr>
     <label>
          <%= radio_button_tag "a", 0 %>この住所を使う
     </label>
@@ -45,8 +50,10 @@
     </br>
     </table>
     
+    
     <p>お支払い方法</p>
     <table>
+        <hr>
     <br>
     <label>
          <%= radio_button_tag "payment", 0 %>代引き

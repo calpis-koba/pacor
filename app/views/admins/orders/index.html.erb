@@ -1,14 +1,24 @@
-<table>
-<% @orders.each do |order| %>
-    <br>
-    <%= order.created_at.strftime('%Y/%m/%d') %>
-    <p>注文番号</p>
-    <%= order.id %>
-    <p>ステータス</p>
-    
-    <p>合計金額</p>
-    <%= order.total_price %>
-    <%= link_to "show", admins_order_path(order) %>
-    </br>
-<% end %>
-</table>
+<div class="container">
+    <table>
+        <% @orders.each do |order| %>
+            <hr>
+            <br>
+            <%= order.created_at.strftime('%Y/%m/%d') %>
+            <p>注文番号:<%= order.id %></p>
+            
+            <p>ステータス:
+            <% if order.status == 0 %>
+                <p>商品準備中</p>
+            <% else %>
+                <p>出荷中</p>
+            <% end %>
+            </p>
+            
+            <p>合計金額:<%= order.total_price %></p>
+            
+            <%= link_to "show", admins_order_path(order) %>
+            </br>
+        <% end %>
+        <%= paginate(@orders) %>
+    </table>
+</div>

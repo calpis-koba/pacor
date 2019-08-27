@@ -3,7 +3,7 @@ class Admins::JenresController < ApplicationController
 
   def index
     @name = Jenre.new
-    @jenre = Jenre.all
+    @jenre = Jenre.page(params[:page])
   end
   
   def edit

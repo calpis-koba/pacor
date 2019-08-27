@@ -3,7 +3,7 @@ class Admins::LabelsController < ApplicationController
 
   def index
     @name = Label.new
-    @label = Label.all
+    @label = Label.page(params[:page])
   end
   
   def edit

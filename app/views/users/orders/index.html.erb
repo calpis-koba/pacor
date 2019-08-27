@@ -1,1 +1,46 @@
-<h1>ご注文ありがとうございました。</h1>
+<div class="container">
+
+    <table>
+        <% @orders.each do |order| %>
+            <hr>
+                <div class='col-xs-4'>
+                    <br>
+                    <%= order.created_at.strftime('%Y/%m/%d') %>
+                    <p>商品タイトル</p><p>数</p>
+                    <% order.order_details.each do |order_detail| %>
+                    <%= order_detail.item.title %>
+                    <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
+                    <% end %>
+                </div>
+                
+                <div class='col-xs-8'>
+                    <p>注文番号:<%= order.id %></p>
+                    
+                    <p>ステータス:
+                    <% if order.status == 0 %>
+                        <p>商品準備中</p>
+                    <% else %>
+                        <p>出荷中</p>
+                    <% end %>
+                    </p>
+                    
+                    <p>支払方法
+                    <% if order.payment == 0 %>
+                        <p>代引き</p>
+                    <% else %>
+                        <p>銀行振り込み</p>
+                    <% end %>
+                    </p>
+                    
+                    <p>発送先:<%= order.postal_code %>-<%= order.address %></p>
+                    
+                    <p>合計金額:<%= order.total_price %></p>
+                    
+                    </br>
+                </div>
+                <hr>
+        <% end %>
+        <%= paginate(@orders) %>
+    </table>
+
+</div>

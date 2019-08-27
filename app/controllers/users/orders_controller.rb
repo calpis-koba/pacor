@@ -1,4 +1,10 @@
 class Users::OrdersController < ApplicationController
+    before_action:authenticate_user!
+
+    def index
+        @order = current_user.orders
+        @orders = @order.page(params[:page])
+    end
     
     def new
         @order = Order.new
@@ -21,7 +27,7 @@ class Users::OrdersController < ApplicationController
             address.prefectures = params[:prefectures]
             address.save
         else
-            ad = Address.find(params[:id])
+            ad = Address.find(params[:a])
             address.name = ad.name
             address.address = ad.address
             address.postal_code = ad.postal_code

@@ -1,15 +1,29 @@
-<% @order.order_details.each do |order_detail| %>
-    <%= order_detail.item.jacket_image %>
-    <%= order_detail.item.title %>
-    <%= order_detail.item.artist.name %>
-    <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
-    <p>在庫</p>
-    <%= order_detail.item.stock %>
-<% end %>
-
-<%= @order.postal_code %>
-<%= @order.address %>
-
-<%= @order.payment %>
-<p>送料: ￥500</p>
-<%= @order.total_price %>
+<div class="container">
+    <% @order.order_details.each do |order_detail| %>
+        <hr>
+        <p><%= order_detail.item.title %>-<%= order_detail.item.artist.name %></p>
+        
+        <p>￥<%= order_detail.item.price %>×<%= order_detail.cd_amount %></p>
+        
+        <p>在庫:<%= order_detail.item.stock %></p>
+        <hr>
+    <% end %>
+    
+    <p>住所:<%= @order.postal_code %><%= @order.address %></p>
+    
+    <p>支払方法
+    <% if @order.payment == 0 %>
+            <p>代引き</p>
+    <% else %>
+            <p>銀行振り込み</p>
+    <% end %></p>
+    
+    <p>送料: ￥500</p>
+    <p>合計金額:<%= @order.total_price+=500 %></p>
+    
+    
+    <%= form_with model: [:admins, @order], local: true do |form| %>
+            <%= form.select :status, [["準備中", 0],["出荷中", 1]]%>
+            <%= form.submit "変更保存", class: "btn btn-primary" %>
+    <% end %>
+</div>

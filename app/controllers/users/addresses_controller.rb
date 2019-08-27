@@ -1,6 +1,8 @@
 class Users::AddressesController < ApplicationController
+        before_action:authenticate_user!
+
     def edit
-        @address = Address.find[params(:id)]
+        @address = Address.find(params[:id])
     end
     
     def update

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :users, :path => ""  do
     resources :items, only:[:index, :show, :destory]
     resources :cart_items, only:[:index, :create, :update, :destroy]
+    get '/cart_items/top', to: 'cart_items#top'
     resources :orders, only:[:index, :new, :create]
     resources :addresses, only:[:create, :edit, :update, :destroy]
     

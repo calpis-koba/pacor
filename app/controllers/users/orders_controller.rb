@@ -3,7 +3,7 @@ class Users::OrdersController < ApplicationController
 
     def index
         @order = current_user.orders
-        @orders = @order.page(params[:page])
+        @orders = @order.page(params[:page]).order(created_at: :desc)
     end
     
     def new
@@ -35,13 +35,13 @@ class Users::OrdersController < ApplicationController
         
         # binding.pry
         
-        sum = 0
+        sum = 500
         order = Order.new
         order.address = address.address
         order.user_id = current_user.id
         
          current_user.cart_items.each do |cart_item|
-             sum += cart_item.item.price
+             sum += (cart_item.item.price*cart_item.amount)
          end
          order.total_price = sum
         #  binding.pry
@@ -60,7 +60,7 @@ class Users::OrdersController < ApplicationController
         cart = current_user.cart_items
         # binding.pry
         cart.destroy_all
-        redirect_to users_orders_path
+        redirect_to users_cart_items_top_path
     end
     
     private

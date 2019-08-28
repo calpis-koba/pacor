@@ -1,15 +1,22 @@
 <div class="container">
 
-    <table>
+    
         <% @orders.each do |order| %>
-            <hr>
+             <div class="panel panel-default", style="height: 250px">
+                 
                 <div class='col-xs-4'>
-                    <br>
-                    <%= order.created_at.strftime('%Y/%m/%d') %>
-                    <p>商品タイトル</p><p>数</p>
+                    <div><%= order.created_at.strftime('%Y/%m/%d') %></div>
+                    
+                        <div style="width:33%;float:left;">商品タイトル</div>
+                        <div style="width:33%;float:left;">数</div>
+                        <div style="width:33%;float:left;">合計金額</div>
+                    
                     <% order.order_details.each do |order_detail| %>
-                    <%= order_detail.item.title %>
-                    <%= order_detail.item.price %>×<%= order_detail.cd_amount %>
+                    
+                        <div style="width:33%;float:left;"><%= order_detail.item.title %></div>
+                        <div style="width:33%;float:left;"><%= order_detail.cd_amount %></div>
+                        <div style="width:33%;float:left;"><p>￥<%= order_detail.item.price*order_detail.cd_amount %></p></div>
+                    
                     <% end %>
                 </div>
                 
@@ -36,11 +43,10 @@
                     
                     <p>合計金額:<%= order.total_price %></p>
                     
-                    </br>
-                </div>
-                <hr>
+                </div>  
+            </div>
         <% end %>
         <%= paginate(@orders) %>
-    </table>
+  
 
 </div>

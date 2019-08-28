@@ -10,6 +10,7 @@
     
     <div class="tab-content">
       <div id="tab1" class="tab-pane active">
+        <div class="panel panel-primary", style = "text-align: center;">
         <p><h4>名前(漢字)</h4>  <%= @user.last_name %><%= @user.first_name %></p>
             
             
@@ -33,24 +34,28 @@
             <%= link_to "編集", edit_admins_user_path(@user), class: "btn btn-success"%>            
             <%= link_to "削除", admins_user_path(@user), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
       </div>
+      </div>
       
       <div id="tab2" class="tab-pane">
+          <div class="panel panel-primary", style = "text-align: center;">
             <% @user.addresses.each do |address| %>
                 <%= address.prefectures %>
                 <%= address.address %>
                 <%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>
             <% end %>
+          </div>
       </div>
       
       <div id="tab3" class="tab-pane">
           
             <% @user.orders.each do |order| %>
+            <div class="panel panel-primary", style = "text-align: center; height: 260px;">
                 <div class="col-xs-4">
                     <table>
                     <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
                     <tr>
                         <th>商品タイトル</th>
-                        <th>枚数</th>
+                        <th>:枚数:</th>
                         <th>金額</th>
                     </tr>
                     
@@ -87,7 +92,7 @@
                     <%= link_to "show", admins_order_path(order), class: "btn btn-success" %>
                     
                 </div>
-                <hr>
+                </div>
             <% end %>
       
       </div>

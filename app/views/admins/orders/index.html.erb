@@ -1,8 +1,8 @@
 <div class="container">
+    
     <table>
         <% @orders.each do |order| %>
-            <hr>
-            <br>
+        <div class="panel panel-default">
             <%= order.created_at.strftime('%Y/%m/%d') %>
             <p>注文番号:<%= order.id %></p>
             
@@ -14,11 +14,12 @@
             <% end %>
             </p>
             
-            <p>合計金額:<%= order.total_price %></p>
+            <p>合計金額(送料込み):<%= order.total_price %></p>
             
             <%= link_to "show", admins_order_path(order) %>
-            </br>
+        </div>
         <% end %>
         <%= paginate(@orders) %>
     </table>
+    
 </div>

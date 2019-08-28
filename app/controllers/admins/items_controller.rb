@@ -2,13 +2,14 @@ class Admins::ItemsController < ApplicationController
       before_action:authenticate_admin!
 
     def index
-        @item = Item.page(params[:page]).order(created_at: :desc)
-
+        @item = Item.search(params[:search]).page(params[:page]).order(created_at: :desc)
     end
 
     def edit
         @item = Item.find(params[:id])
         @item.disks.build
+        @disk = @item.disks.build
+        @song = @disk.songs.build
         @artist = Artist.all
         @label = Label.all
         @jenre = Jenre.all
@@ -22,6 +23,8 @@ class Admins::ItemsController < ApplicationController
     def new
         @item = Item.new
         @item.disks.build
+        @disk = @item.disks.build
+        @song = @disk.songs.build
         @artist = Artist.all
         @label = Label.all
         @jenre = Jenre.all
@@ -35,6 +38,7 @@ class Admins::ItemsController < ApplicationController
 
     def update
         item = Item.find(params[:id])
+        # binding.pry
         item.update(item_params)
         redirect_to admins_items_path
     end
@@ -47,7 +51,7 @@ class Admins::ItemsController < ApplicationController
     
     private
     def item_params
-        params.require(:item).permit(:artist_id, :label_id, :jenre_id, :title, :price, :status, :jacket_image, :stock, disks_attributes:[:id, :_destroy, songs_attributes:[:id, :title]])
+        params.require(:item).permit(:artist_id, :label_id, :jenre_id, :title, :price, :status, :jacket_image, :stock, disks_attributes:[:id, :_destroy, songs_attributes:[:id, :_destroy, :title]])
     end
 
 end

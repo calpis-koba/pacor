@@ -1,6 +1,7 @@
 <div class="container">
+    <div class="panel panel-default", style="text-align:center;">
     <% @order.order_details.each do |order_detail| %>
-        <hr>
+      
         <p><%= order_detail.item.title %>-<%= order_detail.item.artist.name %></p>
         
         <p>￥<%= order_detail.item.price %>×<%= order_detail.cd_amount %></p>
@@ -19,11 +20,12 @@
     <% end %></p>
     
     <p>送料: ￥500</p>
-    <p>合計金額:<%= @order.total_price+=500 %></p>
+    <p>合計金額:<%= @order.total_price %></p>
     
     
     <%= form_with model: [:admins, @order], local: true do |form| %>
             <%= form.select :status, [["準備中", 0],["出荷中", 1]]%>
             <%= form.submit "変更保存", class: "btn btn-primary" %>
     <% end %>
+    </div>
 </div>

@@ -1,5 +1,7 @@
 <div class="container">
-    <h2>ユーザ情報</h2>
+    <div class="panel panel-default">
+        <div style="margin: 0 auto;width: 200px;">
+    <h4>ユーザ情報</h4>
     
     <table>
     <tr>
@@ -29,5 +31,6 @@
     </table>
     <%= link_to "編集", edit_users_user_path(@user) %> 
     <%= link_to "購入履歴", users_orders_path %>
-    <%= link_to "退会する",  unsubscribe_confirm_users_user_path %>
+    <%= link_to "退会する",  unsubscribe_confirm_users_user_path %></div>
+    </div>
 </div>

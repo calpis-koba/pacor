@@ -19,10 +19,10 @@ class Users::UsersController < ApplicationController
     end
 
   def unsubscribe
-    current_user.update_attribute(:is_deleted, true)
+    current_user.destroy
     reset_session
     flash[:success] = "退会しました"
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
     
     

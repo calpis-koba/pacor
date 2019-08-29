@@ -14,7 +14,7 @@ class Item < ApplicationRecord
 
     attachment :jacket_image
     
-    accepts_nested_attributes_for :disks
+    accepts_nested_attributes_for :disks, reject_if: :all_blank, allow_destroy: true
     
     def self.search(search)
       if search

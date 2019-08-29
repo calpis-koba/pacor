@@ -1,8 +1,9 @@
 <div class="container">
   <div class="panel panel-default">
     <div class="item_form", style="margin:0 auto; width: 400px;">
-      <%= form_for [:admins, item] do |f| %>
       
+      <%= form_for [:admins, item] do |f| %>
+      <div class="field">
       <p>アーティスト名　<%= f.select :artist_id, artist.collect {|p| [p.name, p.id]}, :prompt => "選択してください" %></p>
       
       <p>シングル/アルバム名　<%= f.text_field :title %></p>
@@ -18,21 +19,21 @@
       <p>ステータス　<%= f.select :status, ["販売中","販売停止"], :prompt => "選択してください" %></p>
     
       <p>在庫数　<%= f.number_field :stock %></p>
-
+      </div>
       <h3>Disk</h3>
       <div id="disks">
-        <%= f.fields_for :disks do |disk| %>
-          <%= render 'disk_fields', f: disk %>
+           <%= f.fields_for :disks do |disk| %>
+             <%= render 'disk_fields', f: disk %>
         <% end %>
         <div id="links">
     
           <%= link_to_add_association 'add disk',f, :disks, class: "btn btn-success" %>
         </div>
-      
+    </div>
       <%= f.submit "登録" %>
       
       <% end %>
-    </div>
+    
   </div>
 </div>
 </div>

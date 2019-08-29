@@ -22,7 +22,7 @@ class Admins::ItemsController < ApplicationController
 
     def new
         @item = Item.new
-        @item.disks.build
+        #@item.disks.build
         @disk = @item.disks.build
         @song = @disk.songs.build
         @artist = Artist.all

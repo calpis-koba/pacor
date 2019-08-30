@@ -3,6 +3,8 @@ class Users::UsersController < ApplicationController
 
     def show
         @user = current_user
+        @addresses = @user.addresses
+        @a = 0
     end
     
     def edit

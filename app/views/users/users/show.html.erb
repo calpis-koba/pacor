@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="panel panel-default">
+    <div class="panel panel-default", style="width: 500px;margin: 0 auto;">
         <div style="margin: 0 auto;width: 200px;">
     <h4>ユーザ情報</h4>
     
@@ -10,27 +10,33 @@
     </tr>
     
     <tr>
-        <td> <p> 名前(姓・名) <%= @user.last_name %> <%= @user.first_name %></p> </td>
+        <td> <p> 名前(姓・名): <%= @user.last_name %> <%= @user.first_name %></p> </td>
     </tr>
     
     <tr>
-        <td> <p> 名前(セイ・メイ)  <%= @user.kana_last_name %> <%= @user.kana_first_name %></p> </td>
+        <td> <p> 名前(セイ・メイ):  <%= @user.kana_last_name %> <%= @user.kana_first_name %></p> </td>
     </tr>
     
     <tr>
-        <td> <p> 郵便番号・住所 <%= @user.postal_code %> <%= @user.address %> </p> </td>
+        <td> <p> 郵便番号・住所: <%= @user.postal_code %> <%= @user.address %> </p> </td>
+    </tr>
+    
+    <% @addresses.each do |address| %>
+        <tr>
+            <td><p>住所<%= @a += 1 %>: <%= address.postal_code %> <%= address.address %></p></td>
+        </tr>
+    <% end %>
+    
+    <tr>
+        <td> <p> 電話番号: <%= @user.phone %></p> </td>
     </tr>
     
     <tr>
-        <td> <p> 電話番号 <%= @user.phone %></p> </td>
-    </tr>
-    
-    <tr>
-        <td> <p> メールアドレス <%= @user.email %></p> </td>
+        <td> <p> メールアドレス: <%= @user.email %></p> </td>
     </tr>
     </table>
-    <%= link_to "編集", edit_users_user_path(@user) %> 
-    <%= link_to "購入履歴", users_orders_path %>
-    <%= link_to "退会する",  unsubscribe_confirm_users_user_path %></div>
+    <p> <%= link_to "編集", edit_users_user_path(@user) %> | <%= link_to "購入履歴", users_orders_path %> | <%= link_to "退会する",  unsubscribe_confirm_users_user_path %> </p>
+
+    </div>
     </div>
 </div>

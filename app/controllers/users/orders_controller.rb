@@ -39,6 +39,7 @@ class Users::OrdersController < ApplicationController
         order = Order.new
         order.address = address.address
         order.user_id = current_user.id
+        order.postal_code = address.postal_code
         
          current_user.cart_items.each do |cart_item|
              sum += (cart_item.item.price*cart_item.amount)

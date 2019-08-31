@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+   root 'users/items#index'
+  
   namespace :users, :path => ""  do
     resources :items, only:[:index, :show, :destory]
     resources :cart_items, only:[:index, :create, :update, :destroy]

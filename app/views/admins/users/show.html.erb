@@ -39,6 +39,7 @@
       <div id="tab2" class="tab-pane">
           <div class="panel panel-primary", style = "text-align: center;">
             <% @user.addresses.each do |address| %>
+                <hr>
                 <%= address.prefectures %>
                 <%= address.address %>
                 <%= link_to "削除", users_address_path(address), method: :delete, data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %>

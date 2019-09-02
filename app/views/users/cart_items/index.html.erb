@@ -1,0 +1,43 @@
+<div class="container">
+   <div class='row'> 
+       
+         <div class="panel panel-default", style ="padding: 10px; text-align: center;"> 
+         <table>
+        <% @cart.each do |cart| %>
+            
+                <div class='col-xs-4'>
+                    <%= attachment_image_tag cart.item, :jacket_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+                </div>
+                
+                <div class='col-xs-8'>
+                    <%= cart.item.title %>_<%= cart.item.artist.name %>
+                    
+            
+                    <p>￥<%= cart.item.price %>×<%= cart.amount %></p>
+                    <p>在庫<%= cart.item.stock %>枚</p>
+            
+                    <% if cart.item.status == true %>
+                        <p>販売中</p>
+                    <% else %>
+                        <p>販売停止</p>
+                    <% end %>
+            
+                    <% if cart.amount < cart.item.stock %>
+                        <%= link_to "追加",users_cart_item_path(cart), method: :patch, "data-confirm" => "一つ追加しますか？" %>
+                    <% end %>
+                    <%= link_to "削除",users_cart_item_path(cart), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                </div><hr>
+        <% end %>
+       
+        </table>
+        <% if @total_price != 500 %>
+        <p>合計金額: ￥<%= @total_price %></p>
+        
+        
+        <%= link_to "購入", new_users_order_path %>
+        
+        <% end %>
+        </div>
+    
+   </div>
+</div>

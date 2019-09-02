@@ -1,0 +1,2 @@
+module Users::JenresHelper
+end

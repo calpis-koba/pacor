@@ -1,0 +1,38 @@
+<div class="container">
+<div class="panel panel-primary", style="padding: 20px 0">
+    <table>
+        
+        <div class="col-xs-5", style="text-align: center;">
+            <p><%= @item.label.name %> / <%= @item.jenre.name %></p>
+            
+            <%= attachment_image_tag @item, :jacket_image, :fill, 60, 60, fallback: "/images/no_image.jpg" %>
+        </div>
+        <div class="col-xs-7">
+            <p><%= @item.title %> - <%= @item.artist.name %></p>
+
+            <p>￥<%= @item.price %></p>
+  
+            <% if @item.status == true %>
+                <p>販売中</p>
+            <% else %>
+                <p>販売停止</p>
+            <% end %>
+        
+            <% @item.disks.each do |disk| %>
+                
+                    <% disk.songs.each do |song| %>
+                        <%= song.title %>
+                    <% end %>
+                
+            <% end %>
+            
+            <p>在庫:<%= @item.stock %></p>
+            <tr>
+            <td><%= link_to "編集", edit_admins_item_path(@item), class: "btn btn-success" %></td>
+            <td><%= link_to "削除", admins_item_path(@item), method: :delete,data: { "confirm" => "本当に削除しますか？" }, class: "btn btn-danger" %></td>
+            </tr>
+        
+        </div>
+    </table>
+</div>
+</div>

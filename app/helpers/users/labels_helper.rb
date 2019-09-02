@@ -1,0 +1,2 @@
+module Users::LabelsHelper
+end

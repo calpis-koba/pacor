@@ -1,0 +1,28 @@
+<h2>レーベル一覧</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <p>レーベル名</p>
+      <%= form_for [:admins, @name] do |f| %>
+        <%= f.text_field :name %>
+        <%= f.submit "登録", class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-sm-8">
+      <table class="table table-striped">
+        <tbody>
+          <% @label.each do |label| %>
+            <tr>
+              <th><%= label.name %></th>
+              <td>
+                <%= link_to "編集", edit_admins_label_path(label), class: "btn btn-success" %>
+                <%= link_to "削除", admins_label_path(label), class: "btn btn-danger", method: :delete %>
+              </td>
+            </tr>
+          <% end %>
+          <%= paginate(@label) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -13,6 +13,8 @@ class Users::ItemsController < ApplicationController
             @current_stock_array << amount + 1
         
         end
+        limit = 10
+        @current_stock_array =  @item.stock > limit ? (1..limit).to_a : (1..@item.stock).to_a
     end
     
   def destroy

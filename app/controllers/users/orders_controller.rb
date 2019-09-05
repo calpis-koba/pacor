@@ -46,22 +46,18 @@ class Users::OrdersController < ApplicationController
          end
          order.total_price = sum
         #  binding.pry
-         order.save
+        if order.save
 
-        current_user.cart_items.each do |cart_item|
+            order.save_details(current_user)
             
-            @item = OrderDetail.new
-            @item.item_id =  cart_item.item_id
-            @item.order_id = order.id
-            @item.cd_price = cart_item.item.price
-            @item.cd_amount = cart_item.amount
-            @item.save
-            
+            cart = current_user.cart_items
+            # binding.pry
+            cart.destroy_all
+            redirect_to users_cart_items_top_path
+
+        else
+            redirect_to users_cart_items_path
         end
-        cart = current_user.cart_items
-        # binding.pry
-        cart.destroy_all
-        redirect_to users_cart_items_top_path
     end
     
     private

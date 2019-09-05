@@ -1,1 +1,10 @@
+    <% if @item.errors.any? %>
+    	<% @item.errors.full_messages.each do |message| %>
+    	<div style="color: red; margin-left: 10px;">
+    		<li>
+    		<%= message %>
+    		</li>
+    	</div>
+    	<% end %>
+    <% end %>
     <%= render 'admins/items/item', item: @item, artist: @artist, label: @label, jenre: @jenre %>

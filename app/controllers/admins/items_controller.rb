@@ -22,7 +22,6 @@ class Admins::ItemsController < ApplicationController
 
     def new
         @item = Item.new
-        #@item.disks.build
         @disk = @item.disks.build
         @song = @disk.songs.build
         @artist = Artist.all
@@ -31,9 +30,17 @@ class Admins::ItemsController < ApplicationController
     end
 
     def create
-        item = Item.new(item_params)
-        item.save
-        redirect_to admins_items_path
+        @item = Item.new(item_params)
+        if @item.save
+            redirect_to admins_items_path
+        else
+            @disk = @item.disks.build
+            @song = @disk.songs.build
+            @artist = Artist.all
+            @label = Label.all
+            @jenre = Jenre.all
+            render  :new
+        end
     end
 
     def update

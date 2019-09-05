@@ -1,28 +1,30 @@
 <div class="container">
 
-    
         <% @orders.each do |order| %>
-             <div class="panel panel-default", style="height: 250px">
-                 
-                <div class='col-xs-4'>
+            <div class="col-xs-8", style="margin:0 auto;">
+             <div class="panel panel-default">
+
+                <div class="row">
+
+                <div class='col-xs-6'>
                     <div><%= order.created_at.strftime('%Y/%m/%d') %></div>
-                    
+
                         <div style="width:33%;float:left;">商品タイトル</div>
                         <div style="width:33%;float:left;">数</div>
                         <div style="width:33%;float:left;">合計金額</div>
-                    
+
                     <% order.order_details.each do |order_detail| %>
-                    
+
                         <div style="width:33%;float:left;"><%= order_detail.item.title %></div>
                         <div style="width:33%;float:left;"><%= order_detail.cd_amount %></div>
                         <div style="width:33%;float:left;"><p>￥<%= order_detail.item.price*order_detail.cd_amount %></p></div>
-                    
+
+                    </div>
                     <% end %>
-                </div>
-                
-                <div class='col-xs-8'>
+
+                <div class='col-xs-6'>
                     <p>注文番号:<%= order.id %></p>
-                    
+
                     <p>ステータス:
                     <% if order.status == 0 %>
                         <p>商品準備中</p>
@@ -43,7 +45,8 @@
                     
                     <p>合計金額:<%= order.total_price %></p>
                     
-                </div>  
+                </div> 
+                </div> 
             </div>
         <% end %>
         <%= paginate(@orders) %>

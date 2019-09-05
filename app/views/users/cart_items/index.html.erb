@@ -31,7 +31,8 @@
        
         </table>
         <% if @total_price != 500 %>
-        <p>合計金額: ￥<%= @total_price %></p>
+        <p>(送料￥500)</p>
+        <p>合計金額(送料込み): ￥<%= @total_price %></p>
         
         
         <%= link_to "購入", new_users_order_path %>

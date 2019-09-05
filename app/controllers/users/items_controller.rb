@@ -6,6 +6,7 @@ class Users::ItemsController < ApplicationController
     def show
         @item = Item.find(params[:id])
         @cart = CartItem.new
+        @a = 0
         
         @current_stock_array = []
         @item.stock.times do |amount|
